@@ -85,7 +85,7 @@ keymap = [
 [behavior.combo]
 timeout = "20ms"
 combos = [
-    { actions = ["P", "B"], output = "Escape" },
+    { actions = ["F", "P"], output = "Escape" },
     { actions = ["X", "D"], output = "Tab" },
     { actions = ["W", "P"], output = "Minus" },
     { actions = ["H", "."], output = "SHIFTED(Minus)" },
@@ -100,7 +100,7 @@ combos = [
     { actions = ["J", "M"], output = "WM(Quote, LAlt | LShift)" },
     { actions = ["A", "O"], output = "CapsWordToggle" },
     { actions = ["Q", ";"], output = "CapsLock" },
-    { actions = ["J", "L"], output = "Backspace" },
+    { actions = ["L", "U"], output = "Backspace" },
     { actions = ["U", "Y"], output = "Delete" },
     { actions = ["L", "Y"], output = "WM(Backspace, LCtrl)" },
     { actions = ["MT(Z, LCtrl, bal)", "X"], output = "LShift" },

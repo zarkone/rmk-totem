@@ -1,4 +1,25 @@
-# RMK TOTEM 
+# RMK TOTEM
+
+## Layout (this fork)
+
+Colemak-DH port of the zilpzalp/corne-ish-zen layout (see
+[totem-zmk](../totem-zmk) for the full design history). Layers:
+CLDH / SYM (hold middle thumbs) / NUM (hold outer thumbs) / FN (hold the
+`*` thumbs on SYM or NUM). Ctrl held on Z and `/`, Super on the extra
+pinky keys, Alt on inner thumbs.
+
+Chords (20 ms): Esc F+P · Tab X⋯D · `-` W⋯P · `_` H⋯. · `'` N+H ·
+`"` T+D · copy W+R · paste Y+I · Ctrl+A P+T, L+N · PgUp F+S · PgDn U+E ·
+lang J+M · caps-word A+O · CapsLock Q+; · Bspc L+U · Del U+Y ·
+del-word L⋯Y · Shift Z+X, .+/ · Ctrl+Shift (held) A+Z, O+/
+
+FN layer: T/S/R/A = BLE profile 0-3, Q = clear profile bond,
+G = USB/BLE output toggle, B = bootloader.
+
+Build: `nix develop`, then `./build-uf2.sh`; flash with
+`dd if=<uf2> of=/run/media/$USER/XIAO-SENSE/fw.uf2 bs=512 oflag=direct`
+after double-tap reset (central → left, peripheral → right).
+
 
 RMK configuration for [the Totem keyboard](https://github.com/GEIGEIGEIST/TOTEM/).
 
