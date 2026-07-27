@@ -3,6 +3,8 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# force re-read of keyboard.toml (cargo doesn't track it reliably)
+touch build.rs
 cargo build --release
 cargo objcopy --release --bin central -- -O binary rmk-central.bin
 cargo objcopy --release --bin peripheral -- -O binary rmk-peripheral.bin
