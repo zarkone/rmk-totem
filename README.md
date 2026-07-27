@@ -15,9 +15,9 @@ main and CircuitPython all flash byte-perfectly (verified by `CURRENT.UF2`
 readback) but never boot, with or without the SoftDevice installed. The
 Adafruit bootloader (2021-era nrfx) and Embassy-based RMK run fine; the
 likely difference is modern nrfx SoC init poking undocumented errata/trim
-registers that clones don't implement. The full investigation and a
-mothballed, buildable ZMK config live in `~/code/totem-zmk` (local, not
-published).
+registers that clones don't implement. The full investigation lived in a
+local ZMK config repo; its conclusions and recovery tooling are preserved
+here.
 
 Two RMK-specific facts inherited from that story:
 
@@ -26,8 +26,7 @@ Two RMK-specific facts inherited from that story:
   fixed 2026-02) — tap-holds resolved by timeout only, so cross-half
   `ctrl+key` needed an unnatural pause.
 - RMK links at `0x1000`, **replacing the SoftDevice**. To ever go back to
-  SoftDevice-based firmware, restore it via
-  `totem-zmk/tools/flash-bootloader.sh` (in the local totem-zmk repo).
+  SoftDevice-based firmware, restore it via `tools/flash-bootloader.sh`.
 
 ## Base layer (CLDH)
 
