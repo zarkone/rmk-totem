@@ -4,7 +4,7 @@
 [TOTEM](https://github.com/GEIGEIGEIST/TOTEM) (38 keys, split), on a pair of
 Seeed XIAO nRF52840. Forked from
 [andriidemus/rmk-totem](https://github.com/andriidemus/rmk-totem); the layout
-is the shared one from [zilpzalp-zmk](../zilpzalp-zmk) and the corne-ish zen:
+is the shared one from [zilpzalp-zmk](https://github.com/zarkone/zilpzalp-zmk) and the corne-ish zen:
 colemak-DH, chord-heavy, zen-style layers.
 
 ## Why RMK and not ZMK
@@ -16,7 +16,8 @@ readback) but never boot, with or without the SoftDevice installed. The
 Adafruit bootloader (2021-era nrfx) and Embassy-based RMK run fine; the
 likely difference is modern nrfx SoC init poking undocumented errata/trim
 registers that clones don't implement. The full investigation and a
-mothballed, buildable ZMK config live in [totem-zmk](../totem-zmk).
+mothballed, buildable ZMK config live in `~/code/totem-zmk` (local, not
+published).
 
 Two RMK-specific facts inherited from that story:
 
@@ -26,7 +27,7 @@ Two RMK-specific facts inherited from that story:
   `ctrl+key` needed an unnatural pause.
 - RMK links at `0x1000`, **replacing the SoftDevice**. To ever go back to
   SoftDevice-based firmware, restore it via
-  `../totem-zmk/tools/flash-bootloader.sh`.
+  `totem-zmk/tools/flash-bootloader.sh` (in the local totem-zmk repo).
 
 ## Base layer (CLDH)
 
