@@ -16,6 +16,10 @@ ble_profiles_num = 4
 permissive_hold = true
 hold_timeout = "200ms"
 
+# per-key profile (global default seems inert in 0.8.2 — apply explicitly)
+[behavior.morse.profiles]
+bal = { permissive_hold = true, hold_timeout = "200ms" }
+
 [storage]
 # "true" will reset stored layout and BT connection on boot — enable for one
 # flash cycle after changing the default keymap, then turn it back off
@@ -35,9 +39,9 @@ keymap = [
     [
         ["Q", "W", "F", "P", "B",    "J", "L", "U", "Y", ";"],
         ["A", "R", "S", "T", "G",    "M", "N", "E", "I", "O"],
-        ["MT(Z, LCtrl)", "X", "C", "D", "V",    "K", "H", ",", ".", "MT(Slash, RCtrl)"],
-        ["LGui", "No", "LT(2, Tab)", "LT(1, Space)", "MT(Space, LAlt)",
-            "MT(Enter, LAlt)", "LT(1, Backspace)", "LT(2, Escape)", "No", "RGui"]
+        ["MT(Z, LCtrl, bal)", "X", "C", "D", "V",    "K", "H", ",", ".", "MT(Slash, RCtrl, bal)"],
+        ["LGui", "No", "LT(2, Tab, bal)", "LT(1, Space, bal)", "MT(Space, LAlt, bal)",
+            "MT(Enter, LAlt, bal)", "LT(1, Backspace, bal)", "LT(2, Escape, bal)", "No", "RGui"]
     ],
     # 1: SYM (zen lower: symbols left, media + nav right)
     [
@@ -47,8 +51,8 @@ keymap = [
             "SHIFTED(Quote)", "Left", "Up", "Right", "Quote"],
         ["SHIFTED(LeftBracket)", "SHIFTED(RightBracket)", "LeftBracket", "RightBracket", "PageDown",
             "SHIFTED(Grave)", "Home", "Down", "End", "Backslash"],
-        ["_", "No", "LT(3, Tab)", "Escape", "LAlt",
-            "LAlt", "Delete", "LT(3, Equal)", "No", "_"]
+        ["_", "No", "LT(3, Tab, bal)", "Escape", "LAlt",
+            "LAlt", "Delete", "LT(3, Equal, bal)", "No", "_"]
     ],
     # 2: NUM (zen raise: shifted-number symbols left, numpad right)
     [
@@ -58,8 +62,8 @@ keymap = [
             "CapsLock", "Kc4", "Kc5", "Kc6", "Grave"],
         ["_", "_", "_", "SHIFTED(Kc5)", "SHIFTED(Backslash)",
             "PrintScreen", "Kc1", "Kc2", "Kc3", "."],
-        ["_", "No", "_", "LT(3, Space)", "Space",
-            "Kc0", "LT(3, Dot)", "_", "No", "_"]
+        ["_", "No", "_", "LT(3, Space, bal)", "Space",
+            "Kc0", "LT(3, Dot, bal)", "_", "No", "_"]
     ],
     # 3: FN (bt: profiles on A/R/S/T = 3/2/1/0, clear on Q, out-toggle on G)
     [
@@ -99,10 +103,10 @@ combos = [
     { actions = ["J", "L"], output = "Backspace" },
     { actions = ["U", "Y"], output = "Delete" },
     { actions = ["L", "Y"], output = "WM(Backspace, LCtrl)" },
-    { actions = ["MT(Z, LCtrl)", "X"], output = "LShift" },
-    { actions = [".", "MT(Slash, RCtrl)"], output = "RShift" },
-    { actions = ["A", "MT(Z, LCtrl)"], output = "LM(4, LCtrl | LShift)" },
-    { actions = ["O", "MT(Slash, RCtrl)"], output = "LM(4, RCtrl | RShift)" },
+    { actions = ["MT(Z, LCtrl, bal)", "X"], output = "LShift" },
+    { actions = [".", "MT(Slash, RCtrl, bal)"], output = "RShift" },
+    { actions = ["A", "MT(Z, LCtrl, bal)"], output = "LM(4, LCtrl | LShift)" },
+    { actions = ["O", "MT(Slash, RCtrl, bal)"], output = "LM(4, RCtrl | RShift)" },
 ]
 
 [ble]
