@@ -18,12 +18,14 @@
         };
         # rmk 0.8.2 breaks on newer rustc (pin! macro change) — pin to the
         # stable that was current when it was released
-        toolchain = pkgs.rust-bin.stable."1.90.0".default.override {
+        toolchain = pkgs.rust-bin.stable.latest.default.override {
           extensions = ["rust-src" "llvm-tools-preview" "rustfmt"];
           targets = ["thumbv7em-none-eabihf"];
         };
       in {
         default = pkgs.mkShell {
+          RUST_MIN_STACK = "33554432";
+
           packages = [
             toolchain
             pkgs.cargo-make
