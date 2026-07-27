@@ -83,3 +83,6 @@ debug = true            # no overhead for bare-metal
 opt-level = "z"         # optimize for binary size
 overflow-checks = false
 lto = "fat"
+
+[patch.crates-io]
+rmk = { path = "vendor/rmk" }
