@@ -29,7 +29,7 @@ clear_storage = false
 [layout]
 rows = 4
 cols = 10
-layers = 4
+layers = 5
 keymap = [
     # 0: CLDH
     [
@@ -68,6 +68,13 @@ keymap = [
         ["_", "_", "_", "_", "_",    "_", "F1", "F2", "F3", "F12"],
         ["_", "No", "_", "_", "_",    "_", "_", "_", "No", "_"]
     ],
+    # 4: fully transparent — carrier layer for the held Ctrl+Shift chords (LM)
+    [
+        ["_", "_", "_", "_", "_",    "_", "_", "_", "_", "_"],
+        ["_", "_", "_", "_", "_",    "_", "_", "_", "_", "_"],
+        ["_", "_", "_", "_", "_",    "_", "_", "_", "_", "_"],
+        ["_", "No", "_", "_", "_",    "_", "_", "_", "No", "_"]
+    ],
 ]
 
 # zilpzalp chord set (see totem-zmk README). Actions must match keymap strings.
@@ -94,8 +101,8 @@ combos = [
     { actions = ["L", "Y"], output = "WM(Backspace, LCtrl)" },
     { actions = ["MT(Z, LCtrl)", "X"], output = "LShift" },
     { actions = [".", "MT(Slash, RCtrl)"], output = "RShift" },
-    { actions = ["A", "MT(Z, LCtrl)"], output = "WM(No, LCtrl | LShift)" },
-    { actions = ["O", "MT(Slash, RCtrl)"], output = "WM(No, RCtrl | RShift)" },
+    { actions = ["A", "MT(Z, LCtrl)"], output = "LM(4, LCtrl | LShift)" },
+    { actions = ["O", "MT(Slash, RCtrl)"], output = "LM(4, RCtrl | RShift)" },
 ]
 
 [ble]
