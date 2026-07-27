@@ -6,22 +6,90 @@ product_id = 0x4643
 manufacturer = "RMK"
 chip = "nrf52840"
 
-[storage]
-# "true" will reset stored layout and BT connection
-#clear_storage = true
+[rmk]
+combo_max_num = 24
+ble_profiles_num = 4
 
+[storage]
+# "true" will reset stored layout and BT connection on boot — enable for one
+# flash cycle after changing the default keymap, then turn it back off
+clear_storage = false
+
+# Layout ported from totem-zmk (corne-ish zen base + zilpzalp chords).
+# Layers: 0 = CLDH, 1 = SYM, 2 = NUM, 3 = FN.
+#
+# Matrix (4x10): row3 col0/col9 are the extra pinky keys (Super),
+# cols 2-4 / 5-7 the thumbs (left: outer,middle,inner; right: inner,middle,outer).
 [layout]
 rows = 4
 cols = 10
-layers = 5
+layers = 4
 keymap = [
+    # 0: CLDH
     [
-        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-        ["A", "S", "D", "F", "G", "H", "J", "K", "L", ";"],
-        ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "/"],
-        ["esc", "No", "bspc", "spc", "l_shift",
-            "r_gui", "ent", "Tab", "No", "r_ctrl"]
+        ["Q", "W", "F", "P", "B",    "J", "L", "U", "Y", ";"],
+        ["A", "R", "S", "T", "G",    "M", "N", "E", "I", "O"],
+        ["MT(Z, LCtrl)", "X", "C", "D", "V",    "K", "H", ",", ".", "MT(Slash, RCtrl)"],
+        ["LGui", "No", "LT(2, Tab)", "LT(1, Space)", "MT(Space, LAlt)",
+            "MT(Enter, LAlt)", "LT(1, Backspace)", "LT(2, Escape)", "No", "RGui"]
     ],
+    # 1: SYM (zen lower: symbols left, media + nav right)
+    [
+        ["SHIFTED(Minus)", "SHIFTED(Semicolon)", "Equal", "Minus", "SHIFTED(Equal)",
+            "AudioMute", "AudioVolDown", "MediaPlayPause", "AudioVolUp", "Grave"],
+        ["SHIFTED(Comma)", "SHIFTED(Dot)", "SHIFTED(Kc9)", "SHIFTED(Kc0)", "PageUp",
+            "SHIFTED(Quote)", "Left", "Up", "Right", "Quote"],
+        ["SHIFTED(LeftBracket)", "SHIFTED(RightBracket)", "LeftBracket", "RightBracket", "PageDown",
+            "SHIFTED(Grave)", "Home", "Down", "End", "Backslash"],
+        ["_", "No", "LT(3, Tab)", "Escape", "LAlt",
+            "LAlt", "Delete", "LT(3, Equal)", "No", "_"]
+    ],
+    # 2: NUM (zen raise: shifted-number symbols left, numpad right)
+    [
+        ["_", "_", "_", "SHIFTED(Kc7)", "SHIFTED(Kc8)",
+            "CapsWordToggle", "Kc7", "Kc8", "Kc9", "SHIFTED(Grave)"],
+        ["SHIFTED(Kc1)", "SHIFTED(Kc2)", "SHIFTED(Kc3)", "SHIFTED(Kc4)", "SHIFTED(Kc6)",
+            "CapsLock", "Kc4", "Kc5", "Kc6", "Grave"],
+        ["_", "_", "_", "SHIFTED(Kc5)", "SHIFTED(Backslash)",
+            "PrintScreen", "Kc1", "Kc2", "Kc3", "."],
+        ["_", "No", "_", "LT(3, Space)", "Space",
+            "Kc0", "LT(3, Dot)", "_", "No", "_"]
+    ],
+    # 3: FN (bt: profiles on A/R/S/T = 3/2/1/0, clear on Q, out-toggle on G)
+    [
+        ["User6", "_", "_", "_", "Bootloader",    "_", "F7", "F8", "F9", "F10"],
+        ["User3", "User2", "User1", "User0", "User7",    "_", "F4", "F5", "F6", "F11"],
+        ["_", "_", "_", "_", "_",    "_", "F1", "F2", "F3", "F12"],
+        ["_", "No", "_", "_", "_",    "_", "_", "_", "No", "_"]
+    ],
+]
+
+# zilpzalp chord set (see totem-zmk README). Actions must match keymap strings.
+[behavior.combo]
+timeout = "20ms"
+combos = [
+    { actions = ["P", "B"], output = "Escape" },
+    { actions = ["X", "D"], output = "Tab" },
+    { actions = ["W", "P"], output = "Minus" },
+    { actions = ["H", "."], output = "SHIFTED(Minus)" },
+    { actions = ["N", "H"], output = "Quote" },
+    { actions = ["T", "D"], output = "SHIFTED(Quote)" },
+    { actions = ["W", "R"], output = "WM(C, LCtrl | LShift)" },
+    { actions = ["Y", "I"], output = "WM(V, LCtrl | LShift)" },
+    { actions = ["P", "T"], output = "WM(A, LCtrl)" },
+    { actions = ["L", "N"], output = "WM(A, LCtrl)" },
+    { actions = ["F", "S"], output = "PageUp" },
+    { actions = ["U", "E"], output = "PageDown" },
+    { actions = ["J", "M"], output = "WM(Quote, LAlt | LShift)" },
+    { actions = ["A", "O"], output = "CapsWordToggle" },
+    { actions = ["Q", ";"], output = "CapsLock" },
+    { actions = ["J", "L"], output = "Backspace" },
+    { actions = ["U", "Y"], output = "Delete" },
+    { actions = ["L", "Y"], output = "WM(Backspace, LCtrl)" },
+    { actions = ["MT(Z, LCtrl)", "X"], output = "LShift" },
+    { actions = [".", "MT(Slash, RCtrl)"], output = "RShift" },
+    { actions = ["A", "MT(Z, LCtrl)"], output = "WM(LShift, LCtrl)" },
+    { actions = ["O", "MT(Slash, RCtrl)"], output = "WM(RShift, RCtrl)" },
 ]
 
 [ble]
