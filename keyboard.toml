@@ -10,6 +10,12 @@ chip = "nrf52840"
 combo_max_num = 24
 ble_profiles_num = 4
 
+# ZMK "balanced" flavor for all tap-holds (MT/LT): resolve as hold when
+# another key is pressed AND released during the hold, else tap/timeout.
+[behavior.morse]
+permissive_hold = true
+hold_timeout = "200ms"
+
 [storage]
 # "true" will reset stored layout and BT connection on boot — enable for one
 # flash cycle after changing the default keymap, then turn it back off
