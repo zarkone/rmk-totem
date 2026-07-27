@@ -94,8 +94,8 @@ combos = [
     { actions = ["L", "Y"], output = "WM(Backspace, LCtrl)" },
     { actions = ["MT(Z, LCtrl)", "X"], output = "LShift" },
     { actions = [".", "MT(Slash, RCtrl)"], output = "RShift" },
-    { actions = ["A", "MT(Z, LCtrl)"], output = "OSM(LCtrl | LShift)" },
-    { actions = ["O", "MT(Slash, RCtrl)"], output = "OSM(RCtrl | RShift)" },
+    { actions = ["A", "MT(Z, LCtrl)"], output = "WM(No, LCtrl | LShift)" },
+    { actions = ["O", "MT(Slash, RCtrl)"], output = "WM(No, RCtrl | RShift)" },
 ]
 
 [ble]
